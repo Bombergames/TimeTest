@@ -114,11 +114,14 @@ public class timeTracker : MonoBehaviour, ITimeTracker {
 
     private void OnDrawGizmos()
     {
+        int i = 0;
+        frame lastF = reel[0];
         foreach(frame f in reel)
         {
-            int index = reel.IndexOf(f);
-            Gizmos.color = Color.HSVToRGB((float) index / reel.Count, 1, 1);
-            Gizmos.DrawWireSphere(f.position, 0.1f);
+            Gizmos.color = Color.HSVToRGB((float) i / reel.Count, 1, 1);
+            Gizmos.DrawLine(f.position, (lastF.position - f.position) * 0.3f + f.position);
+            lastF = f;
+            i++;
         }
     }
 }
